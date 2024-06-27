@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Refugios de Montaña, Patagonia Argentina, Vacaciones en Patagonia, Trekking en Patagonia"/>
+    <meta name="description" content="Refugios de Montaña, Refugios de Montania, Refugios de Montana"/>
+    <title>Refugios de montaña</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/Logo-Ico/RefugiosDeMontania-Ico.ico') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .div-text ol li{
+            text-align: left;
+            margin: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            list-style-image: url("{{ url_for('static', filename='img/vineta.png') }}");
+        }   
+
+        .seccion5 {
+            position: relative;
+            background-image: url("{{ url_for('static', filename='img/Refugios-HOME/Refugios-Montania-Actividades-nieve.jpg') }}");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            position: relative;
+            align-items: center;
+            height: 1000px;
+        }
+
+        .footer-izq-img {
+            width: 320px;
+            height: 61px;
+            background-size: cover;
+            background-image: url("{{ url_for('static', filename='img/ico/RefugiosDeMontania-Logo.png') }}");
+            margin-right: 20%;
+            margin-left: 1px;
+        }
+
+
+        @media(max-width:1023px) {
+    .footer-der {
+                display: flex;
+                flex-direction: column; 
+
+            }
+            .footer-izq-img {
+                max-width: 100px;
+                width: 100px;
+                height: 80px;
+                background-size: cover;
+                background-image: url("{{ url_for('static', filename='img/ico/RefugiosDeMontania-Ico.png') }}");
+                margin-right: 40px;
+                margin-left: 40px;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu container">
+            <a href="{{ url_for('home_routes.home') }}" class="logo">
+                <img src="{{ url_for('static', filename='img/ico/RefugiosDeMontania-Logo.png') }}" alt="Logo" class="logo-svg">
+            </a>
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="{{ url_for('static', filename='img/menu.png') }}" class="menu-icono" alt="">
+            </label>
+            <div class="navbar">
+                <ul>
+                    <li><a href="refugios.html">Refugios</a></li>
+                    <li><a href="actividades.html">Actividades y Experiencias</a></li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    {% if current_user %}
+                        <li><a href="{{ url_for('auth_routes.logout') }}">Cerrar Sesión <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth_routes.login') }}">Login <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop class="background-video">
+                <source src="{{ url_for('static', filename='img/Refugios-HOME/RefugiosDemontaniaPatagoniaArgentinaHero.mp4') }}" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+        </div>
+
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>Refugios <span class="contorno">de Montaña</span> </h1>
+                <p>Los refugios de montaña en Bariloche son refugios rústicos ubicados estratégicamente en las montañas circundantes, ofreciendo a los excursionistas un lugar para descansar y recargar energías durante sus travesías. Con vistas panorámicas impresionantes y un ambiente acogedor, estos refugios son puntos de encuentro para los amantes de la naturaleza que buscan aventurarse en las alturas de los Andes Patagónicos. Ofreciendo servicios básicos como alojamiento y comida, estos refugios son puntos de partida ideales para explorar los majestuosos paisajes de la región y disfrutar de la serenidad de las montañas.</p>
+                <a href="refugios.html" class="btn-1">Mas info</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="seccion1-experiencia">
+        <div class="div-img">
+            <img src="{{ url_for('static', filename='img/Refugios-HOME/RefugiosDeMonatania-Argentina-2.jpg') }}" alt="Imagen 1" class="sec1-img1">
+        </div>
+
+        <div class="div-text">
+            <h2>Únete a la <br>experiencia de vivir <br>en plena naturaleza</h2>
+            <ol>
+                <li>Refugios seguros</li>
+                <li>Todas las comodidades</li>
+                <li>Reuniones grupales</li>
+                <li>Seguridad y acompañamiento</li>
+                <li>Disponible todo el año</li>
+            </ol>
+            <a href="refugios.html" class="btn-1">Mas info</a>
+        </div>
+    </div>
+
+    <div class="seccion1-experiencia2">
+        <img src="{{ url_for('static', filename='img/Refugios-HOME/Refugio-montania-Puente-debajo-paralelo-40-Argentina.jpg') }}" class="sec2-img1" alt="">
+        <div class="img-container">
+            <h1>UNA EXPERIENCIA UNICA <br>DEBAJO DEL FAMOSO<br>PARALELO 40 EN ARGENTINA</h1>
+            <img src="{{ url_for('static', filename='img/Refugios-HOME/lago-refugio-montania-patagonia-argentina.jpg') }}" class="sec2-img2" alt="">
+        </div>
+    </div>
+
+    <div class="seccion2-experiencia">
+        <div class="div-text-s2e1">
+            <h2><br>Los mejores refugios de Argentina en la zona del Bolsón y escaladas organizadas <br></h2>
+            <p>“La mejor experiencia en naturaleza en años”.</p>
+            <p style="color:black;">En la pintoresca región del Bolsón, Argentina, se encuentran algunos de los refugios de montaña más impresionantes del país. Estos refugios no solo ofrecen un santuario acogedor para los aventureros, sino que también sirven como base perfecta para emocionantes escaladas organizadas. Desde el majestuoso paisaje natural hasta la cálida hospitalidad local, cada momento en estos refugios es una experiencia inolvidable. Sumérgete en lo mejor de la naturaleza argentina y vive una aventura única que quedará grabada en tus recuerdos durante años.</p>
+            <a href="actividades.html" class="btn-1 btn-s2e1">Mas info</a>
+        </div>
+
+        <div class="div-img">
+            <img src="{{ url_for('static', filename='img/Refugios-HOME/Grupo2a.png') }}" alt="Imagen 1" class="sec1-img1-s2e1">
+            <img src="{{ url_for('static', filename='img/Refugios-HOME/Grupo2b.png') }}" alt="Imagen 2" class="sec1-img2-s2e1">
+        </div>
+
+    </div>
+
+    <div class="session3-card">
+        <div class="card" style="width: 25rem;">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/Refugio-Lopez-refugio-de-montania-patagonia-argentina.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4>Refugio Lopez</h4>
+                <p class="card-text">El Refugio López en la Patagonia, ubicado en el Parque Nacional Nahuel Huapi, ofrece refugio a excursionistas y montañistas. Situado en un entorno natural impresionante, proporciona alojamiento y servicios básicos para quienes exploran la región.</p>
+            </div>
+        </div>
+        <div class="card" style="width: 25rem;">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/Refugio-San-Martín-patagonia-argentina.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4>Refugio San Martin</h4>
+                <p class="card-text">El Refugio San Martín, en la Patagonia, es un enclave de montaña que brinda resguardo a aventureros. Ubicado en el Parque Nacional Los Glaciares, ofrece servicios esenciales y un refugio acogedor en medio de paisajes majestuosos.</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 25rem;">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/Refugio-Rivadavia-Patagonia-paralelo-40-Argentina.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4>Refugio Rivadavia</h4>
+                <p class="card-text">El Refugio Rivadavia, en la Patagonia, es un punto de descanso en el corazón de la naturaleza. Situado en la cordillera de los Andes, ofrece refugio y servicios básicos para montañistas y excursionistas que exploran la belleza salvaje de la región.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEsION 4-->
+    <div class="seccion4">
+        <img  src="{{ url_for('static', filename='img/Refugios-HOME/Trayecto-patagonia-argentina-refugios-de-montania.jpg') }}" class="sec4-img1" alt="">
+        <div class="txt-container-s4">
+            <h1>Trayectos inolvidables</h1>
+            <p>Explorar los trayectos de montaña en Bariloche es adentrarse en un mundo de maravillas naturales y aventuras sin igual. Cada sendero revela paisajes espectaculares, desde densos bosques de lengas hasta cumbres nevadas que se elevan hacia el cielo. Los caminos serpentean a través de valles pintorescos y lagos cristalinos, ofreciendo vistas panorámicas que quitan el aliento en cada paso. Cada trayecto es una experiencia única, impregnada de la majestuosidad de la naturaleza patagónica, dejando recuerdos imborrables en el corazón de quienes se aventuran a explorarlos!</p>
+        </div>
+    </div>
+
+    <div class="cont-img-s4-group">
+        <div class="cont-img-s4">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/Ascensión-Cerro-Tronador-Patagonia-refugio-actividad.jpg') }}" class="sec4-img2" alt="">  
+            <p>La ascensión al Cerro Tronador es una de las experiencias más emocionantes que la Patagonia tiene para ofrecer. Este majestuoso pico, coronado por glaciares eternos, atrae a aventureros de todo el mundo en busca de desafíos y vistas incomparables. Durante la ascensión, los exploradores se sumergen en la inmensidad de la Patagonia, enfrentando terrenos variados y desafiantes. Al llegar al refugio en las alturas, los viajeros encuentran un oasis de calma y camaradería, donde pueden descansar y recargar energías antes de emprender nuevas aventuras. Ya sea escalando las alturas del Tronador o participando en actividades alpinas, cada momento en este rincón remoto de la Patagonia es una oportunidad para descubrir la grandeza de la naturaleza y la fortaleza del espíritu humano.</p>
+        </div>
+
+        <div class="cont-img-s4">
+            <img 
+            src="{{ url_for('static', filename='img/Refugios-HOME/refugio-de-montania-patagonia-hermosa-vista.jpg') }}" class="sec4-img2" alt="">  
+            <P>Ubicado en lo más profundo de la Patagonia, el refugio de montaña ofrece más que simplemente un lugar de descanso; es un santuario para los amantes de la naturaleza y los buscadores de aventuras. Anidado entre picos nevados y valles serenos, este refugio es un faro de hospitalidad en medio de la majestuosidad natural. Sus paredes de madera guardan historias de montañeros y excursionistas que buscaron refugio y camaradería en su interior. Cada atardecer regala un espectáculo de colores vibrantes sobre el horizonte, mientras que el silencio de la noche se ve interrumpido solo por el susurro del viento entre los árboles. Este refugio, con su hermosa vista y su espíritu acogedor, es mucho más que un simple destino; es un lugar donde los sueños se encuentran con la realidad y donde los corazones aventureros encuentran su hogar en la Patagonia</P>
+        </div>
+    </div>
+
+    <!--SESSION 5-->
+    <div class="seccion5">
+        <div class="txt-container-s5">
+            <h1>Actividades</h1>
+            <p>En la Patagonia, cada día es una aventura. Desde senderismo hasta navegación en lagos, hay actividades para todos los gustos y niveles de habilidad. ¡Ven y descubre lo que te espera!</p>
+        </div>
+    </div>
+
+    <div class="cont-img-s5-group">
+        <div class="cont-img-s5">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/refugio-montania-actividades-man-standing-land-against-sky.jpg') }}" class="sec5-img2" alt="">  
+            <p>En el corazón de las imponentes montañas de la Patagonia, un refugio emerge como un punto de descanso y rejuvenecimiento para los aventureros intrépidos. Contra el telón de fondo del vasto cielo azul, un hombre se yergue en contemplación, absorbiendo la grandeza de su entorno. El paisaje montañoso ofrece un escenario perfecto para una amplia gama de actividades al aire libre, desde el senderismo hasta la escalada. Esta imagen captura la esencia de la aventura y la serenidad que se encuentra en las alturas de la Patagonia, invitando a todos a sumergirse en la naturaleza salvaje y encontrar inspiración en su vastedad</p>
+        </div>
+
+        <div class="cont-img-s5">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/refugios-monatnia-patagonia-woman-exploring-beautiful-rural-surroundings.jpg') }}" class="sec5-img2" alt="">  
+            <P>En un escenario rural de la Patagonia, una mujer se aventura a explorar los impresionantes alrededores naturales. Con el vasto paisaje patagónico como su telón de fondo, ella se sumerge en la belleza de la naturaleza, absorbiendo cada detalle de su entorno. Desde las majestuosas montañas hasta los tranquilos valles, cada rincón ofrece una nueva maravilla por descubrir. Esta imagen captura la esencia de la aventura y la conexión con la tierra que se encuentra en la remota y hermosa región de la Patagonia, inspirando a todos a explorar y disfrutar de la magia de la naturaleza</P>
+        </div>
+
+        <div class="cont-img-s5">
+            <img  src="{{ url_for('static', filename='img/Refugios-HOME/refugio-montania-relax-vista-atardecer.jpg') }}" class="sec5-img2" alt="">  
+            <P>En un tranquilo refugio de montaña en lo profundo de la Patagonia, el atardecer pinta el cielo con tonos cálidos y suaves. Desde la comodidad del refugio, los viajeros pueden relajarse y disfrutar de la serenidad del entorno, mientras el sol se hunde lentamente detrás de las majestuosas montañas. Esta vista ofrece un momento de calma y reflexión, invitando a los visitantes a conectar con la naturaleza y recargar energías para nuevas aventuras por descubrir</P>
+        </div>
+    </div>    
+
+<!-- FORMULARIO DE CONTACTO -->
+<section id="REFUGIOS-CONTACTO" class="Contactanos">
+
+    <div class="contactanos">
+        <div class="contenedorform">
+            <div class="partizq">
+                <h2>Contáctanos</h2>
+                <p><strong>Únete a la comunidad y recibe toda <br>la info sobre las fechas y actividades</strong></p>
+                <p>¿Tienes alguna pregunta, comentario o sugerencia? No dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte en todo lo que necesites.</p>
+                <p><strong>Te esperamos!!</strong></p>
+            </div>
+            <div class="partder">
+                <div class="row p-1">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control custom-bg filled-text-color" id="nombre" placeholder="Nombre">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control custom-bg filled-text-color" id="apellido" placeholder="Apellido">
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control custom-bg filled-text-color" id="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control custom-bg filled-text-color" id="telefono" placeholder="Teléfono">
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">
+                        <input type="text" class="form-control custom-bg filled-text-color" id="asunto" placeholder="Asunto" aria-label="First name">
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">
+                        <textarea class="form-control custom-bg filled-text-color" placeholder="¡Hola! Me gustará más información acerca de..." id="mensaje" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row p-1" style="margin-left: 0px;margin-right: 0px;">
+                    <div class="row p-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Acepto compartir mis datos
+                            </label>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-1" id="enviarFormulario">Enviar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-izq">
+        <div class="footer-izq-img">
+            
+        </div>
+    </div>
+    <div class="footer-der">
+        <div>
+            <h2 class="titulos-footer">Refugios</h2>
+            <ul>
+                <li><a href="nosotros.html" class="link-footer">Sobre Nosotros</a></li>
+                <li><a href="refugios.html" class="link-footer">Listado Refugios</a></li>
+                <li><a href="nosotros.html" class="link-footer">Trabaja con Nosotros</a></li>
+                <li><a href="#contactanos_id" class="link-footer">Contacto</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="titulos-footer">Trayectos</h2>
+            <ul>
+                <li><a href="actividades.html" class="link-footer">Caminatas</a></li>
+                <li><a href="actividades.html" class="link-footer">Hospedaje</a></li>
+                <li><a href="nosotros.html" class="link-footer">Guías</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="titulos-footer">Refugios de montaña</h2>
+            <ul>
+                <li>Avenida Bolsón 1434</li>
+                <li>Ciudad de Bolsón</li>
+                <li>Argentina</li>
+                <li> </li>
+                <li><a href="mailto:info@refugiosbolson.com.ar" class="link-footer"></a>info@refugiosbolson.com.ar</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<div class="redes-sociales">
+    <a href="" target="_blank"><i class="bi bi-linkedin"></i></a>
+    <a href="" target="_blank"><i class="bi bi-twitter-x"></i></a>
+    <a href="" target="_blank"><i class="bi bi-instagram"></i></a>
+</div>
+
+<div class="derechos">
+    <p>© Copyright 2024 <b>Grupo 12</b> Codo a Codo</p>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script  src="{{ url_for('static', filename='js/form.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
