@@ -23,6 +23,7 @@ def login():
             return redirect(url_for('my_profile.myprofile')) ######tegno que apuntar a la ruta protegida
         else:
             flash("Usuario o contraseña incorrectos.", 'error')
+            return render_template('login.html', mensaje='Usuario o Contraseña Incorrecto')
 
     return render_template('login.html')
 

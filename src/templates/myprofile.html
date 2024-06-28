@@ -4,6 +4,7 @@
     <title>My Profile</title>
 </head>
 <body>
+    <a href="{{ url_for('home_routes.home') }}">Volver a inicio</a>
     <h1>My Profile Nombre{{ user.use_str_first_name }}</h1>
     <h4>Apellio: {{ user.use_str_last_name}}</h4>
     <h4>Telefono: {{ user.use_str_phone}}</h4>
