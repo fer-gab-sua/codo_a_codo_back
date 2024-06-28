@@ -3,8 +3,6 @@ from models import db ,User
 from routes.home import home_routes
 from routes.auth import auth_routes
 from routes.profile import my_profile_routes
-
-from flask_jwt_extended import JWTManager
 from config import config
 from flask_login import LoginManager
 
