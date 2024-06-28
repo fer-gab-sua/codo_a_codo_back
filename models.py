@@ -44,7 +44,6 @@ class User(db.Model):
     def is_anonymous(self):
         # Devuelve True si el usuario es anónimo, False en caso contrario.
         return False  # En tu caso, si los usuarios siempre están autenticados, puede ser False
-    
 
 class Mochilas(db.Model):
     __tablename__ = 'mochilas'
