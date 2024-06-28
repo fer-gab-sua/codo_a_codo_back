@@ -7,7 +7,7 @@
     <meta name="keywords" content="RefugiosdeMontaña,PatagoniaArgentina,VacacionesenPatagonia,TrekkingenPatagonia">
     <meta name="description" content="Refugios de Montaña, Refugios de Montania, Refugios de Montana">
     <link rel="icon" type="image/png" sizes="16x16" href="img/Logo-Ico/RefugiosDeMontania-Ico.ico">
-    <link rel="stylesheet" href="css/styles-refugios.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles-refugios.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -25,20 +25,25 @@
 
 <header>
     <div class="menu container">
-        <a href="index.html" class="logo">
-            <img src="img/Logo-Ico/RefugiosDeMontania-Logo.png" alt="Logo" class="logo-svg">
+        <a href="{{ url_for('home_routes.home') }}" class="logo">
+            <img src="{{ url_for('static', filename='img/Logo-Ico/RefugiosDeMontania-Logo.png')}}" alt="Logo" class="logo-svg">
         </a>
         <input type="checkbox" id="menu">
         <label for="menu">
-            <img src="img/Logo-Ico/menu.png" class="menu-icono" alt="">
+            <img src="{{ url_for('static', filename='img/Logo-Ico/menu.png')}}" class="menu-icono" alt="">
         </label>
         <div class="navbar">
-            <ul>
-                <li><a href="refugios.html">Refugios</a></li>
-                <li><a href="actividades.html">Actividades y Experiencias</a></li>
-                <li><a href="nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="login.html">Login <img src="img/Refugios-HOME/login2.png" alt="RefugiosDeMontania-Logo" style="height: 30px"></a></li>
-            </ul>
+          <ul>
+            <li><a href="{{ url_for('home_routes.refugios') }}">Refugios</a></li>
+            <li><a href="{{ url_for('home_routes.actividades') }}">Actividades y Experiencias</a></li>
+            <li><a href="{{ url_for('home_routes.nosotros') }}">Sobre Nosotros</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('my_profile.myprofile') }}">Mis Mochilas</a></li>
+                <li><a href="{{ url_for('auth.logout') }}"> LogOut <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Login<img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
+            {% endif %}
+        </ul>
         
         </div>
     </div>
@@ -47,7 +52,7 @@
 
 <section id="HERO-REFUGIOS">
   <div class="HeroRefugioVistaAerea" id="TOP-refugios">
-    <video class="video" src="img/Refugios-REFUGIOS/fondo.mp4" autoplay muted loop></video>
+    <video class="video" src="{{ url_for('static', filename='img/Refugios-REFUGIOS/fondo.mp4')}}" autoplay muted loop></video>
     <div>
       <div class="header-txt">
           <h1>Debajo del <span class="contorno">Paralelo 40</span> </h1>
@@ -109,7 +114,7 @@
   
           <div id=Frey class="card">
             <div class="card-image">
-              <img src="img/Refugios-REFUGIOS/Refugio-Frey-Terraza-con-Vistas-Impresionantes-a-Montanas-Bariloche.jpg" alt="Refugio Frey Información" class="card-image">
+              <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Frey-Terraza-con-Vistas-Impresionantes-a-Montanas-Bariloche.jpg')}}" alt="Refugio Frey Información" class="card-image">
             </div>
             <div class="card-content">
                 <div class="card-title">
@@ -126,7 +131,7 @@
   
           <div id=Negra class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Laguna-Negra-Bariloche.jpg" alt="Refugio Laguna Negra Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Laguna-Negra-Bariloche.jpg')}}" alt="Refugio Laguna Negra Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -143,7 +148,7 @@
   
           <div id=Meiling class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/refugio-otto-meiling-bariloche.jpg" alt="Refugio Otto Meiling Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/refugio-otto-meiling-bariloche.jpg')}}" alt="Refugio Otto Meiling Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -167,7 +172,7 @@
   
           <div id=Escondido2 class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Lago-Escondido-El-Bolson-Argentina.jpg" alt="Refugio Lago Escondido Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Lago-Escondido-El-Bolson-Argentina.jpg')}}" alt="Refugio Lago Escondido Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -184,7 +189,7 @@
   
           <div id=Andina class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Huella-Andina-El-Bolson-Patagonia-Argentina.jpg" alt="Refugio Huella Andina Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Huella-Andina-El-Bolson-Patagonia-Argentina.jpg')}}" alt="Refugio Huella Andina Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -201,7 +206,7 @@
   
           <div id=Laguitos class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Los-Laguitos-El-Bolson-Patagonia-Argentina.jpg" alt="Refugio Los Laguitos Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Los-Laguitos-El-Bolson-Patagonia-Argentina.jpg')}}" alt="Refugio Los Laguitos Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -227,7 +232,7 @@
   
             <div id="Futa" class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Futaleufu-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg" alt="Refugio Futaleufú Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Futaleufu-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg')}}" alt="Refugio Futaleufú Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -244,7 +249,7 @@
   
           <div id=Kruger class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Kruger-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg" alt="Refugio Krüger Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Kruger-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg')}}" alt="Refugio Krüger Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -261,7 +266,7 @@
   
           <div id=Toro class="card">
             <div class="card-image">
-            <img src="img/Refugios-REFUGIOS/Refugio-Lagunas-del-Toro-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg" alt="Refugio Lagunas del Toro Información" class="card-image">
+            <img src="{{ url_for('static', filename='img/Refugios-REFUGIOS/Refugio-Lagunas-del-Toro-Parque-Los-Alerces-Chubut-Patagonia-Argentina.jpg')}}" alt="Refugio Lagunas del Toro Información" class="card-image">
             </div>
             <div class="card-content">
               <div class="card-title">
@@ -353,7 +358,7 @@
     <div class="footer-info">
       <div class="footer-logo">
         <a href="#TOP-refugios">
-        <img class="img-footer-logo" src="img/Logo-Ico/RefugiosDeMontania-Logo-black.png" alt="Refugios de Montaña Logo">
+        <img class="img-footer-logo" src="{{ url_for('static', filename='img/Logo-Ico/RefugiosDeMontania-Logo-black.png')}}" alt="Refugios de Montaña Logo">
         </a>
       </div>
       <div class="footer-links">
@@ -391,7 +396,7 @@
       <p>© Copyright 2024 <b>Grupo 12</b> Codo a Codo</p>
     </div>
 </footer>
-<script src="js/refugios.js"></script>
+<script src="{{ url_for('static', filename='js/refugios.js')}}"></script>
 
 </body>
 </html>

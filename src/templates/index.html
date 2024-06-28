@@ -73,13 +73,14 @@
             </label>
             <div class="navbar">
                 <ul>
-                    <li><a href="refugios.html">Refugios</a></li>
-                    <li><a href="actividades.html">Actividades y Experiencias</a></li>
-                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
-                    {% if current_user %}
-                        <li><a href="{{ url_for('auth_routes.logout') }}">Cerrar Sesión <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
+                    <li><a href="{{ url_for('home_routes.refugios') }}">Refugios</a></li>
+                    <li><a href="{{ url_for('home_routes.actividades') }}">Actividades y Experiencias</a></li>
+                    <li><a href="{{ url_for('home_routes.nosotros') }}">Sobre Nosotros</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('my_profile.myprofile') }}">Mis Mochilas</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}"> LogOut <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
                     {% else %}
-                        <li><a href="{{ url_for('auth_routes.login') }}">Login <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login<img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -96,7 +97,7 @@
             <div class="header-txt">
                 <h1>Refugios <span class="contorno">de Montaña</span> </h1>
                 <p>Los refugios de montaña en Bariloche son refugios rústicos ubicados estratégicamente en las montañas circundantes, ofreciendo a los excursionistas un lugar para descansar y recargar energías durante sus travesías. Con vistas panorámicas impresionantes y un ambiente acogedor, estos refugios son puntos de encuentro para los amantes de la naturaleza que buscan aventurarse en las alturas de los Andes Patagónicos. Ofreciendo servicios básicos como alojamiento y comida, estos refugios son puntos de partida ideales para explorar los majestuosos paisajes de la región y disfrutar de la serenidad de las montañas.</p>
-                <a href="refugios.html" class="btn-1">Mas info</a>
+                <a href="{{ url_for('home_routes.refugios') }}" class="btn-1">Mas info</a>
             </div>
         </div>
     </header>
@@ -115,7 +116,7 @@
                 <li>Seguridad y acompañamiento</li>
                 <li>Disponible todo el año</li>
             </ol>
-            <a href="refugios.html" class="btn-1">Mas info</a>
+            <a href="{{ url_for('home_routes.refugios') }}" class="btn-1">Mas info</a>
         </div>
     </div>
 
@@ -132,7 +133,7 @@
             <h2><br>Los mejores refugios de Argentina en la zona del Bolsón y escaladas organizadas <br></h2>
             <p>“La mejor experiencia en naturaleza en años”.</p>
             <p style="color:black;">En la pintoresca región del Bolsón, Argentina, se encuentran algunos de los refugios de montaña más impresionantes del país. Estos refugios no solo ofrecen un santuario acogedor para los aventureros, sino que también sirven como base perfecta para emocionantes escaladas organizadas. Desde el majestuoso paisaje natural hasta la cálida hospitalidad local, cada momento en estos refugios es una experiencia inolvidable. Sumérgete en lo mejor de la naturaleza argentina y vive una aventura única que quedará grabada en tus recuerdos durante años.</p>
-            <a href="actividades.html" class="btn-1 btn-s2e1">Mas info</a>
+            <a href="{{ url_for('home_routes.actividades') }}" class="btn-1 btn-s2e1">Mas info</a>
         </div>
 
         <div class="div-img">
@@ -288,18 +289,18 @@
         <div>
             <h2 class="titulos-footer">Refugios</h2>
             <ul>
-                <li><a href="nosotros.html" class="link-footer">Sobre Nosotros</a></li>
-                <li><a href="refugios.html" class="link-footer">Listado Refugios</a></li>
-                <li><a href="nosotros.html" class="link-footer">Trabaja con Nosotros</a></li>
+                <li><a href="{{ url_for('my_profile.myprofile') }}" class="link-footer">Sobre Nosotros</a></li>
+                <li><a href="{{ url_for('home_routes.refugios') }}" class="link-footer">Listado Refugios</a></li>
+                <li><a href="{{ url_for('home_routes.nosotros') }}" class="link-footer">Trabaja con Nosotros</a></li>
                 <li><a href="#contactanos_id" class="link-footer">Contacto</a></li>
             </ul>
         </div>
         <div>
             <h2 class="titulos-footer">Trayectos</h2>
             <ul>
-                <li><a href="actividades.html" class="link-footer">Caminatas</a></li>
-                <li><a href="actividades.html" class="link-footer">Hospedaje</a></li>
-                <li><a href="nosotros.html" class="link-footer">Guías</a></li>
+                <li><a href="{{ url_for('home_routes.actividades') }}" class="link-footer">Caminatas</a></li>
+                <li><a href="{{ url_for('home_routes.actividades') }}" class="link-footer">Hospedaje</a></li>
+                <li><a href="{{ url_for('home_routes.nosotros') }}" class="link-footer">Guías</a></li>
             </ul>
         </div>
         <div>

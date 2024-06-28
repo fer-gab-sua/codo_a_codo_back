@@ -39,7 +39,7 @@
                 </div>
                 <h2 class="fw-bold text-center mb-5">Registro de Usuarios</h2>
                 
-                <form id="registroForm"  method="POST"action="{{ url_for('auth_routes.register') }}">
+                <form id="registroForm"  method="POST"action="{{ url_for('auth.register') }}">
                     <div class="mb-4">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
                     </div>
@@ -64,7 +64,7 @@
                     </div>
                     <!-- Enlace para iniciar sesión -->
                     <div class="my-3">
-                        <span>¿Ya tienes cuenta?  <a href="{{ url_for('auth_routes.login') }}">Iniciar sesión</a></span>
+                        <span>¿Ya tienes cuenta?  <a href="{{ url_for('auth.login') }}">Iniciar sesión</a></span>
                     </div>
                 </form>
             </div>

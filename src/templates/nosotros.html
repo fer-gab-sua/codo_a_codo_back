@@ -7,7 +7,7 @@
     <meta name="keywords" content="Refugios de Montaña, Patagonia Argentina, Vacaciones en Patagonia, Trekking en Patagonia">
     <meta name="description" content="Refugios de Montaña, Refugios de Montania, Refugios de Montana">
     <link rel="icon" type="image/png" sizes="16x16" href="img/Logo-Ico/RefugiosDeMontania-Ico.ico">
-    <link rel="stylesheet" href="css/nosotros.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nosotros.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -26,19 +26,24 @@
   <header>
     <div class="menu container">
         <a href="index.html" class="logo">
-            <img src="img//Logo-Ico/RefugiosDeMontania-Logo.png" alt="Logo" class="logo-svg">
+            <img src="{{ url_for('static', filename='img//Logo-Ico/RefugiosDeMontania-Logo.png') }}" alt="Logo" class="logo-svg">
         </a>
         <input type="checkbox" id="menu">
         <label for="menu">
-            <img src="img/menu.png" class="menu-icono" alt="">
+            <img src="{{ url_for('static', filename='img/menu.png')}}" class="menu-icono" alt="">
         </label>
         <div class="navbar">
-            <ul>
-                <li><a href="refugios.html">Refugios</a></li>
-                <li><a href="actividades.html">Actividades y Experiencias</a></li>
-                <li><a href="nosotros.html">Sobre Nosotros</a></li>
-                <li><a href="login.html">Login <img src="img/Refugios-HOME/login2.png" style="height: 30px" alt="RefugiosDeMontania-Logo"></a></li>
-            </ul>
+          <ul>
+            <li><a href="{{ url_for('home_routes.refugios') }}">Refugios</a></li>
+            <li><a href="{{ url_for('home_routes.actividades') }}">Actividades y Experiencias</a></li>
+            <li><a href="{{ url_for('home_routes.nosotros') }}">Sobre Nosotros</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('my_profile.myprofile') }}">Mis Mochilas</a></li>
+                <li><a href="{{ url_for('auth.logout') }}"> LogOut <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Login<img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
+            {% endif %}
+        </ul>
         </div>
     </div>
 
@@ -65,7 +70,7 @@
   <div class="session3-card">
     <div class="card-group">     
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/Apasionada-por-la-Montana-Ana-Refugio-de-Montana.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/Apasionada-por-la-Montana-Ana-Refugio-de-Montana.jpg')}}" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Lucía, la aventurera apasionada</h4>
@@ -75,7 +80,7 @@
       </div>
       
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/Compromiso-con-el-Medio-Ambiente-Joaco-Refugio-de-Montana.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/Compromiso-con-el-Medio-Ambiente-Joaco-Refugio-de-Montana.jpg')}}" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Juan, el amante de la tranquilidad</h4>
@@ -85,7 +90,7 @@
       </div>
       
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/Refugios-de-Montana-Patagonia-Argentina-Proyecto-Tefi.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/Refugios-de-Montana-Patagonia-Argentina-Proyecto-Tefi.jpg')}}" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Sofía, buscadora de experiencias únicas</h4>
@@ -94,7 +99,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/Mas-de-15-Anios-de-Experiencia-en-Refugios-de-Montana-Nacho.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/Mas-de-15-Anios-de-Experiencia-en-Refugios-de-Montana-Nacho.jpg')}}"" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Martín, el fotógrafo enamorado del paisaje</h4></div>
@@ -123,7 +128,7 @@
     <div class="card-group">
       
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/Refugios-de-Montana-Experiencia-Patagonia-Juan.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/Refugios-de-Montana-Experiencia-Patagonia-Juan.jpg')}}" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Juan, 48 años</h4>
@@ -133,7 +138,7 @@
       </div>
       
       <div class="card">
-        <img src="img/Refugios-NOSOTROS/refugios-patagonia-two-women-50-years-old-are-traveling-trekking-mountains-healthy-lifestyle.jpg" class="card-img-top" alt="...">
+        <img src="{{ url_for('static', filename='img/Refugios-NOSOTROS/refugios-patagonia-two-women-50-years-old-are-traveling-trekking-mountains-healthy-lifestyle.jpg')}}" class="card-img-top" alt="...">
         <div class="card-content">
           <div class="card-title">
             <h4>Sofía y Carmen</h4>

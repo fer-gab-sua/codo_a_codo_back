@@ -32,7 +32,7 @@
                 </div>
                 <h2 class="fw-bold text-center pt-5 mb-5">Bienvenido!!!</h2>
                 
-                <form id="loginForm" method="POST" action=""{{ url_for('auth_routes.login') }}"">
+                <form id="loginForm" method="POST" action=""{{ url_for('auth.login') }}"">
                     <div id="message-container"></div>
                     <div id="error-container" style="color: red;"></div>
                     <div class="mb-4">
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="my-3 pt-5">
-                        <span>No tienes cuenta? <a href="{{ url_for('auth_routes.register') }}">Registrate</a></span> <br>
+                        <span>No tienes cuenta? <a href="{{ url_for('auth.register') }}">Registrate</a></span> <br>
                         <span><a href="{{ url_for('home_routes.home') }}">Volver al home!</a></span>
                     </div>
 
