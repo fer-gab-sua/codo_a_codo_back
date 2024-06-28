@@ -10,6 +10,42 @@
 
     <div id="profile-info"></div>
 
+    <div>
+        <h2>Mochilas</h2>
+        <ul>
+            {% for mochila in mochilas %}
+                <li>{{ mochila.nombre }} - {{ mochila.descripcion }}</li>
+            {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('my_profile.new_mochila') }}" method="post">
+            <input type="text" name="nombre" placeholder="Nombre de la Mochila" required>
+            <input type="text" name="descripcion" placeholder="Descripción" required>
+            <button type="submit">Agregar Mochila</button>
+        </form>
+    </div>
+
+
+    <div>
+        <h2>Mochila 1</h2>
+
+        <ul>
+            {% for item in mochila %}
+                <li>{{ item.cantidad }} - {{ item.contenido }}</li>
+            {% endfor %}
+        </ul>
+
+
+        <form action="{{ url_for('my_profile.new_item') }}" method="post">
+            <input type="number" name="id_mochila" placeholder="Item id" required>
+            <input type="text" name="nombre" placeholder="Descripción" required>
+            <input type="number" name="cantidad" placeholder="Cantidad" required>
+            <button type="submit">Agregar Mochila</button>
+        </form>
+    </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 

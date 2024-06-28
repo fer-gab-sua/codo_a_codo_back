@@ -31,8 +31,7 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
     
-    # Inicializar JWTManager con la aplicación Flask
-    jwt = JWTManager(app)
+    
 
     # Registrar los Blueprints
     app.register_blueprint(home_routes)
