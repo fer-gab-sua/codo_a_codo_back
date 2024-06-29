@@ -21,7 +21,6 @@ def create_app():
     db.init_app(app)
 
     # Configuración para Flask-Login
-
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
     
@@ -29,13 +28,10 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
     
-    
-
     # Registrar los Blueprints
     app.register_blueprint(home_routes)
     app.register_blueprint(my_profile_routes, url_prefix='/profile')
     app.register_blueprint(auth_routes)
-    
     return app
 
 # Crear la aplicación utilizando la función factory create_app
