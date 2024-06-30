@@ -1,0 +1,31 @@
+<div class="menu container">
+    <a href="{{ url_for('home_routes.home') }}" class="logo">
+        <img src="{{ url_for('static', filename='img/ico/RefugiosDeMontania-Logo.png') }}" alt="Logo" class="logo-svg">
+    </a>
+    <input type="checkbox" id="menu">
+    <label for="menu">
+        <img src="{{ url_for('static', filename='img/menu.png') }}" class="menu-icono" alt="">
+    </label>
+    <div class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home_routes.refugios') }}">Refugios</a></li>
+            <li><a href="{{ url_for('home_routes.actividades') }}">Actividades y Experiencias</a></li>
+            <li><a href="{{ url_for('home_routes.nosotros') }}">Sobre Nosotros</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('my_profile.myprofile') }}">Mis Mochilas</a></li>
+                <li>
+                    <a href="{{ url_for('auth.logout') }}"> 
+                        LogOut
+                        
+                        <img src="{{ url_for('static', filename='archivos/' + current_user.use_profile_img) }}" style="height: 30px ; border-radius: 100%;" alt="Imagen de Perfil">
+                        
+                    </a>
+                </li>
+
+
+            {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Login<img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

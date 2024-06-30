@@ -1,0 +1,530 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Inter";
+    }
+
+header {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    position: relative;
+    align-items: center;
+    
+}
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color:#273749;
+    z-index: 1000;
+}
+
+.menu a {
+    text-decoration: none;
+    
+}
+
+.logo {
+    color: #FF7C20;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.menu .navbar ul li {
+    position: relative;
+    float: left;
+    
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
+    padding: 10px;
+    color: #ffffff;
+    display: block;
+    font-weight: bold;
+}
+
+.menu .navbar ul li a:hover{
+    color: #FF7C20;
+    font-weight: bold;
+}
+
+
+#menu {
+    display: none;
+}
+
+.menu-icono {
+    width: 35px;
+}
+
+.menu label {
+    cursor:  pointer;
+    display: none;
+}
+
+.container-lista-mochilas{
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+}
+
+
+@media (min-width: 480px) {
+    .container-lista-mochilas {
+flex-wrap: wrap;  
+
+  }
+}
+
+@media(max-width:1023px) {
+    .menu {
+        padding: 30px ;
+    }
+    .menu label {
+        display: initial;
+    }
+    .menu .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #3f3f3f48;
+        backdrop-filter: blur(5px);
+        display: none;
+        
+    }
+    .menu .navbar ul li {
+        width: 100%;
+    }
+
+    #menu:checked ~ .navbar{
+        display: initial;
+    }
+
+    .icons {
+        display: none;
+    }
+
+    .header {
+        padding: 80px 30px 50px 30px;
+        align-items: self-start;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-txt {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .header-txt h1 {
+        margin-bottom: 10px;
+    }
+    .images {
+        position: initial;
+        width: 300px;
+        height: 300px;
+    }
+}
+
+
+.banner{
+    width:100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-position: center;
+    background-size: 100%;
+    background-image: url(../img/Refugios-HOME/Trayecto-patagonia-argentina-refugios-de-montania.jpg);
+}
+
+.banner-description{
+    width:90%;
+    max-width: 1000px;
+    display: block;
+    margin: auto;
+}
+
+.header-txt {
+    position: relative;  
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.header-txt h1{
+    font-size: 100px;
+    text-align: center;
+    font-size: 6vw;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 25px;
+    align-items: center;
+
+}
+.header-txt .contorno{
+    color: transparent;  /*Hacer el texto transparente para que solo se vea el contorno */
+    -webkit-text-stroke: 2px rgb(255, 255, 255);  /*Añadir un contorno de 2px en negro */
+    font-size: 6vw;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+
+.header-txt p{
+    margin-top: 150px;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: arial;
+}
+
+.btn-1{
+    text-transform: uppercase;
+    color: #FEDCC4;
+    background-color: #FF7C20;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 16px 70px;
+    border-radius: 10px;
+}
+
+.btn-1:hover {
+    background-color: #EE6300;
+}
+.btn-2 {
+    text-transform: uppercase;
+    color: #FEDCC4;
+    background-color: #FF7C20;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 16px 70px;
+    border-radius: 10px;   
+
+}
+
+a {
+    text-decoration: none;
+    color: #c0c0c0;
+    }
+body {
+    font-family: "Inter", sans-serif;
+    }
+.container {
+    margin: 0;
+    }
+
+
+h2 {
+    font-size: 40px;
+    font-weight: 600;
+    }
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+    }
+
+h4 { 
+    font-size: 20px;
+    font-weight: 300;
+    }
+
+.CommonLabel {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FF7C20;
+    font-family: "Inter", sans-serif;
+    }
+
+a :hover {
+        color: #273749;
+        text-decoration: none;
+        }
+
+.derechos {
+    font-size: 12px;
+    font-weight: 300;
+    color: #c0c0c0;
+    padding-top: 2px;
+    padding-left: 26px;
+    height: 33px;
+    }
+
+    
+p {
+    font-size: 15px;
+    font-weight: 200;
+    line-height: 1.5;
+    color: #c0c0c0;
+
+    }
+
+h2, h3, h4 {
+    color: #FF7C20
+    }
+
+    .titulo {
+        padding-top: 60px;
+        padding-bottom: 30px;
+        text-align: left;
+        position: relative;
+        color: #FF7C20;
+    }
+
+@media (max-width: 1023px) {
+
+    .footer-info {
+        flex-direction: column; /* Alinear verticalmente en móviles */
+        align-items: left;
+        }
+        .footer-links {
+            flex-direction: column; /* Alinear verticalmente en móviles */
+            align-items: left;
+            }
+        .footer {
+        flex-direction: column; /* Alinear verticalmente en móviles */
+        align-items: left;
+            }
+    }
+.Fondo {
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 90px;
+    padding-right: 20%;
+    padding-left: 20%;
+    background-color: #273749;
+
+}
+
+.Mi-Perfil .Arma-tu-mochila {
+    padding-bottom: 5%;
+        display: flex;
+        flex-direction: column;
+}
+
+.d2 {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: self-end;
+}
+
+.d2i-img {
+    height: 130px;
+}
+.color-texto-special {
+    color: #ffffff;
+}
+.color-special {
+    color: #FF7C20;
+}
+
+.Arma-tu-Mochila {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;  
+    gap: 20px;
+}
+
+.custom-bg {
+    background-color: #273749 !important;
+    height: 50px;
+
+}
+
+.custom-bg::placeholder {
+    color: rgb(165, 165, 165) !important;
+
+}
+.filled-text-color{
+    color: rgb(255, 255, 255) !important;
+
+}
+
+
+.Mis-Mochilas {
+display: flex;
+flex-direction: column;
+padding-top: 50px;
+flex-basis: auto;
+
+}
+
+
+.container-lista-mochilas-creadas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 700px;
+    height: 60px;
+    justify-content: space-between;
+
+
+}
+
+
+
+.container-crear-items-en-mochila {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 400px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.Nuevo-item-mochila {
+    display: flex;
+    flex-direction: row;
+align-items: center;
+gap: 10px;
+width: 100%;
+
+}
+.col-md-6 {
+width: 100%;
+
+}
+.acciones {
+    display: flex;
+    padding: 10px 0px;
+    gap: 10px;
+}
+
+.borrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+border-width: 2px;  
+border-color: #FF7C20;
+    border-radius: 5px;
+    background-color: #273749;
+    cursor: pointer;
+    padding: 5px;
+
+}
+
+
+.editar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+border-width: 2px;  
+border-color: #FF7C20;
+    border-radius: 5px;
+    background-color: #FF7C20;
+    cursor: pointer;
+    padding: 5px;
+
+}
+.icon-btn {
+    color:#FF7C20;
+}
+.h2 {
+    color: #FF7C20;
+}
+.p {
+    color: azure;
+}
+
+.a-especial {
+    color: #c0c0c0;
+    text-decoration: none;
+    }
+
+ .volver {
+text-decoration: underline; }   
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    height: 160px;
+    margin-top: 70px;
+    margin-bottom: 40px;
+
+}
+
+.footer-logo {
+    width: 100px;
+    margin-left: 50px;
+    margin-bottom: 24px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 50px;  
+}
+
+.footer-list {
+    display: flex;
+    flex-direction: column;
+    padding-right: 100px;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+    align-content: space-evenly;
+
+}
+
+.footer-list :hover {
+    color: #FF9E5A;
+}
+
+.CommonLabel{
+    color: #FF9E5A;
+
+}
+.img-footer-logo {
+    height: 40px;
+
+}
+
+.redes-sociales {
+    margin-top: 24px;
+    margin-right: 20px;
+    margin-bottom: 24px;
+    color: #FF9E5A;
+
+}
+.redes-sociales :hover {
+    color: #273749;
+
+}
+
+.bi :hover {
+    color: #273749;
+}
+
+.bi {
+    color: #FF7C20;
+    margin-right: 20px;
+}
+
+
