@@ -1,8 +1,16 @@
-from flask import Blueprint, render_template, request, redirect, url_for , flash
+from flask import Blueprint, render_template, request, redirect, url_for , flash ,current_app
 from flask_login import login_user, logout_user, login_required
 from models import User,  db
+import os
 from werkzeug.security import check_password_hash
+from werkzeug.utils import secure_filename
 auth_routes = Blueprint('auth', __name__)
+
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 
@@ -31,7 +39,8 @@ def register():
         first_name = request.form.get('nombre', '')
         last_name = request.form.get('apellido', '')
         phone = request.form.get('telefono', '')
-
+        file = request.files['profile_picture']
+        
         if User.query.filter_by(use_str_email=email).first():
             flash('El correo electrónico ya está registrado.')
             return redirect(url_for('auth.register'))
@@ -46,6 +55,21 @@ def register():
 
         db.session.add(new_user)
         db.session.commit()
+
+        # Ahora el new_user tiene el user_id asignado
+        user_id = new_user.user_id
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            extension = os.path.splitext(filename)[1]
+            nuevonombrefile = f"{user_id}{extension}"
+            upload_path = os.path.join(current_app.config['STATIC_DIR'], 'archivos')
+            os.makedirs(upload_path, exist_ok=True)
+            file.save(os.path.join(upload_path, nuevonombrefile))
+
+            # Actualizar la imagen de perfil en la base de datos
+            new_user.set_profile_img(nuevonombrefile)
+            db.session.commit()
 
         flash('Usuario registrado con éxito.')
         return redirect(url_for('auth.login'))

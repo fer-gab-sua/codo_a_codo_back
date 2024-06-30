@@ -2,6 +2,65 @@
 <html>
 <head>
     <title>My Profile</title>
+    <style>
+        
+        .clima {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 250px;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .clima h4 {
+            color: #333;
+
+        }
+        .clima p {
+            font-size: 0.7em;
+            color: #555;
+            margin: 10px 0;
+            
+        }
+        .clima img {
+            margin-top: 15px;
+            width: 90px;
+        }
+
+        .contenedor {
+            display: flex;
+            align-items: center;
+            margin: auto;
+            border: #33333372 solid 1px ; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            
+        }
+
+        .cont_izq {
+            display: block;
+            width: 50%;
+
+        }
+
+        .cont_izq span{
+            font-size: 2em;
+            
+        }
+        .cont_der {
+            display: block;
+            width: 50%;
+            border-left: #33333344 solid 1px;
+        }
+
+        .cont_der span {
+            font-size: 1.5em;
+        }
+    </style>
+
+
 </head>
 <body>
     <a href="{{ url_for('home_routes.home') }}">Volver a inicio</a>
@@ -10,6 +69,40 @@
     <h4>Telefono: {{ user.use_str_phone}}</h4>
 
     <div id="profile-info"></div>
+
+    <div class="clima">
+        <h4>Clima en El Bolsón</h4>
+
+
+
+        {% if weather %}
+
+            <div class="contenedor">
+                <div class="cont_izq">
+                    <p>Temp.: <br>
+                        <span>{{ weather.temperature }}°C</span></p>
+
+                    <p>Sensación térmica: <br>
+                        <span>{{ weather.sensacion_termica }}°C</span></p>
+                </div>    
+                <div class="cont_der">
+                    <p>Descripción: <br>
+                        <span>{{ weather.description }}</span></p>
+                    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}.png" alt="Icono del clima">
+                </div>
+            
+            </div>    
+
+
+
+
+
+        {% elif error %}
+            <p>Error: {{ error }}</p>
+        {% else %}
+            <p>No se pudo obtener la información del clima.</p>
+        {% endif %}
+    </div>
 
     <div>
         <h2>Mochilas</h2>

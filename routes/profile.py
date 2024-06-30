@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from flask_login import current_user, login_required
 from models import User , Mochilas, Mochila, db # Asegúrate de importar tu modelo de usuario adecuadamente
-
+import requests
 
 
 
@@ -14,8 +14,28 @@ def myprofile():
     # current_user contiene el usuario autenticado actualmente
     if current_user:
         mochilas = Mochilas.query.filter_by(user_id=current_user.user_id).all()
+        api_key = '1d93bc91eeb6a258d8c2ee0bf8475bb1'
+        cityid = 3858765
+        url = f'https://api.openweathermap.org/data/2.5/weather?id={cityid}&appid={api_key}&units=metric&lang=es'
 
-        return render_template('myprofile.html', user=current_user, mochilas=mochilas)
+        response = requests.get(url)
+        weather_data = response.json()
+        print("esta es la url")
+        print(url)
+        print(weather_data)
+        if response.status_code == 200:
+            weather = {
+                'city': weather_data['name'],
+                'temperature': weather_data['main']['temp'],  # Temperatura actual en Celsius
+                'temperature_max': weather_data['main']['temp_max'],  # Temperatura máxima en Celsius
+                'temperature_min': weather_data['main']['temp_min'],  # Temperatura mínima en Celsius
+                'sensacion_termica' : weather_data['main']['feels_like'],
+                'description': weather_data['weather'][0]['description'],
+                'icon': weather_data['weather'][0]['icon']
+            }
+            print(weather)
+
+            return render_template('myprofile.html', user=current_user, mochilas=mochilas, weather= weather)
     else:
         # En teoría, no deberíamos llegar aquí gracias a @login_required
         return "Usuario no autenticado"

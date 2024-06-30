@@ -12,6 +12,7 @@ class User(db.Model):
     use_str_first_name = db.Column(db.String(100),nullable=True, default= '')
     use_str_last_name = db.Column(db.String(100), nullable=True, default= '')
     use_str_phone = db.Column(db.String(15), nullable=True, default= '')
+    use_profile_img = db.Column(db.String(15), nullable=True, default= 'iphoto.png')
     is_active = db.Column(db.Boolean, default=True)
     
     backpacks = db.relationship('Mochilas', backref='owner', lazy=True)
@@ -25,6 +26,10 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.use_str_password, password)
+    
+    def set_profile_img(self,ruta):
+        self.use_profile_img  = ruta
+
     
     def get_id(self):
         return str(self.user_id)  

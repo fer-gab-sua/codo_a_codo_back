@@ -20,26 +20,31 @@
 </head>
 <body>
 
+
+
     <div class="container w-75 bg-primary mt-5 rounded shadow">
         <div class="row align-items-stretch">
-            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
-            </div>
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
             <div class="col bg-white">
+
+
+
+                <form id="registroForm" method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
                 <div class="d-flex justify-content-center mt-5">
                     <!-- Imagen circular de usuario -->
                     <div class="position-relative d-inline-block">
                         <img src="{{ url_for('static', filename='img/usuario_ciruclar.png') }}" width="120" alt="Usuario" class="rounded-circle">
-                        <label for="fileInput" class="position-absolute top-0 start-100 translate-middle">
+                        <label for="profile_picture" class="position-absolute top-0 start-100 translate-middle">
                             <span class="badge bg-secondary rounded-circle" style="cursor: pointer;">
                                 <i class="bi bi-pencil"></i>
                             </span>
                         </label>
-                        <input type="file" id="fileInput" class="d-none">
+                        <input type="file" id="profile_picture" class="d-none" name="profile_picture">
                     </div>
                 </div>
                 <h2 class="fw-bold text-center mb-5">Registro de Usuarios</h2>
                 
-                <form id="registroForm"  method="POST"action="{{ url_for('auth.register') }}">
+                
                     <div class="mb-4">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
                     </div>
@@ -53,18 +58,18 @@
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
                     </div>
                     <div class="mb-4">
-                        <input type="text" class="form-control" name="apellido" id="apellido"placeholder="Apellido" required>
+                        <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" required>
                     </div>
                     <div class="mb-4">
-                        <input type="tel" class="form-control" name="telefono" id="telefono"placeholder="Teléfono" required>
+                        <input type="tel" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" required>
                     </div>
                     <!-- Botón de registro -->
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary" style="background-color:rgb(34, 33, 48)" required>Registrarse</button>
+                        <button type="submit" class="btn btn-primary" style="background-color:rgb(34, 33, 48)">Registrarse</button>
                     </div>
                     <!-- Enlace para iniciar sesión -->
                     <div class="my-3">
-                        <span>¿Ya tienes cuenta?  <a href="{{ url_for('auth.login') }}">Iniciar sesión</a></span>
+                        <span>¿Ya tienes cuenta? <a href="{{ url_for('auth.login') }}">Iniciar sesión</a></span>
                     </div>
                 </form>
             </div>
@@ -72,8 +77,8 @@
     </div>
 
     <!-- Scripts -->
-    <!-- <script>
-        document.getElementById('fileInput').addEventListener('change', function(event) {
+    <script>
+        document.getElementById('profile_picture').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -84,7 +89,7 @@
                 reader.readAsDataURL(file);
             }
         });
-    </script> -->
+    </script> 
     <script type="module" src="register.js"></script>
 </body>
 </html>

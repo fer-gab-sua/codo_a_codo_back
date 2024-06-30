@@ -78,7 +78,16 @@
                     <li><a href="{{ url_for('home_routes.nosotros') }}">Sobre Nosotros</a></li>
                     {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('my_profile.myprofile') }}">Mis Mochilas</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}"> LogOut <img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Logout"></a></li>
+                        <li>
+                            <a href="{{ url_for('auth.logout') }}"> 
+                                LogOut
+                                
+                                <img src="{{ url_for('static', filename='archivos/' + current_user.use_profile_img) }}" style="height: 30px ; border-radius: 100%;" alt="Imagen de Perfil">
+                                
+                            </a>
+                        </li>
+
+
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}">Login<img src="{{ url_for('static', filename='img/Refugios-HOME/login2.png') }}" style="height: 30px" alt="Imagen Login"></a></li>
                     {% endif %}
