@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, request, abort , redirect, url_for
+from flask import Blueprint, render_template, request, abort , redirect, url_for, jsonify
 from flask_login import current_user, login_required
 from models import User , Mochilas, Mochila, db 
 import requests
 
 my_profile_routes = Blueprint('my_profile', __name__)
+
+
 
 def clima():
         api_key = '1d93bc91eeb6a258d8c2ee0bf8475bb1'
@@ -39,22 +41,25 @@ def myprofile():
 @my_profile_routes.route('/myprofile/new_mochila', methods=['GET', 'POST'])
 @login_required
 def new_mochila():
-    if request.method == 'POST':
-        nombre = request.form['nombre_mochila']
-        descripcion = request.form['descripcion_mochila']
+    try:
+        nombre = request.form.get('nombre_mochila')
+        descripcion = request.form.get('descripcion_mochila')
         
-        # Crear una nueva instancia de Mochilas
+        if not nombre or not descripcion:
+            return jsonify({'status': 'error', 'message': 'Faltan datos'})
+
         nueva_mochila = Mochilas(user_id=current_user.user_id, nombre=nombre, descripcion=descripcion)
-        
-        # Agregar y confirmar la nueva mochila en la base de datos
         db.session.add(nueva_mochila)
         db.session.commit()
+
+
+        mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
         
-        return redirect(url_for('my_profile.myprofile'))
-
-    return redirect(url_for('my_profile.myprofile'))
-    
-
+        mochila_html = render_template('_mochilas.html',  mochilas_list= mochilas_list)
+        return jsonify({'status': 'success', 'html': mochila_html})
+    except Exception as e:
+        print(f"Error al crear la mochila: {e}")
+        return jsonify({'status': 'error', 'message': str(e)})
 
 @my_profile_routes.route('/myprofile/delete_mochila/<int:mochila_id>', methods=['POST'])
 @login_required
@@ -64,7 +69,46 @@ def delete_mochila(mochila_id):
         abort(403)  # Forbidden: No tienes permisos para borrar esta mochila
     db.session.delete(mochila)
     db.session.commit()
-    return redirect(url_for('my_profile.myprofile'))
+    
+    mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
+    mochila_html = render_template('_mochilas.html',  mochilas_list= mochilas_list)
+    return jsonify({'status': 'success', 'html': mochila_html})
+
+
+
+@my_profile_routes.route('/myprofile/select_mochila/<int:mochila_id>', methods=['POST'])
+@login_required
+def select_mochila(mochila_id): ##Seria mas un select mochila para que pueda visualizar el detalle de las mochilas
+    mochila = Mochilas.query.get_or_404(mochila_id)
+    contenido_mochila = Mochila.query.filter_by(mochila_id=mochila_id).all()
+    # Otros datos que necesites cargar para la mochila seleccionada
+
+    mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
+    mochila_html = render_template('_detalle_mochila.html',  mochilas_list= mochilas_list, mochila=mochila, contenido_mochila=contenido_mochila)
+    return jsonify({'status': 'success', 'html': mochila_html})
+
+@my_profile_routes.route('/myprofile/new_item/<int:mochila_id>', methods=['GET', 'POST'])
+@login_required
+def new_item(mochila_id):
+    if request.method == 'POST':
+        nombre = request.form['contenido']
+        descripcion = request.form['cantidad']
+        # Crear una nueva instancia de Mochilas
+        nuevo_item = Mochila(mochila_id=mochila_id, contenido=nombre,  cantidad=descripcion)
+        # Agregar y confirmar la nueva mochila en la base de datos
+        db.session.add(nuevo_item)
+        db.session.commit()
+
+        mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
+        mochila_select = Mochilas.query.filter_by(user_id=current_user.user_id, id=mochila_id).first()
+
+        contenido_mochila = Mochila.query.filter_by(mochila_id=mochila_select.id).all()
+
+
+        mochila_html = render_template('_detalle_mochila.html',  mochilas_list= mochilas_list, mochila=mochila_select, contenido_mochila=contenido_mochila)
+        return jsonify({'status': 'success', 'html': mochila_html})
+
+
 
 
 @my_profile_routes.route('/myprofile/delete_item/<int:item_id>', methods=['POST'])
@@ -85,68 +129,15 @@ def delete_item(item_id):
 
     db.session.delete(item)
     db.session.commit()
+    
+    
+    
     contenido_mochila= Mochila.query.filter_by(mochila_id=mochila_id).all()
-    return render_template('myprofile.html', 
-                           user=current_user, 
-                           mochilas_list=mochilas_list,
-                           mochila_select=mochila_select,
-                           contenido_mochila=contenido_mochila, 
-                           weather=weather
-                           )
+    mochila_html = render_template('_detalle_mochila.html',  mochilas_list= mochilas_list, mochila=mochila_select, contenido_mochila=contenido_mochila)
+    return jsonify({'status': 'success', 'html': mochila_html})
 
 
 
-
-@my_profile_routes.route('/myprofile/update_mochila/<int:mochila_id>', methods=['POST'])
-@login_required
-def update_mochila(mochila_id): ##Seria mas un select mochila para que pueda visualizar el detalle de las mochilas
-    mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
-    mochila_select = Mochilas.query.filter_by(id=mochila_id).first()
-    contenido_mochila= Mochila.query.filter_by(mochila_id=mochila_id).all()
-    weather = clima()
-    return render_template('myprofile.html', 
-                           user=current_user, 
-                           mochilas_list=mochilas_list,
-                           mochila_select=mochila_select,
-                           contenido_mochila=contenido_mochila, 
-                           weather=weather
-                           )
-
-
-
-@my_profile_routes.route('/myprofile/new_item/<int:mochila_id>', methods=['GET', 'POST'])
-@login_required
-def new_item(mochila_id):
-    if request.method == 'POST':
-        nombre = request.form['contenido']
-        descripcion = request.form['cantidad']
-        
-        
-        # Crear una nueva instancia de Mochilas
-        nuevo_item = Mochila(mochila_id=mochila_id, contenido=nombre,  cantidad=descripcion)
-        
-        # Agregar y confirmar la nueva mochila en la base de datos
-        db.session.add(nuevo_item)
-        db.session.commit()
-
-        mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
-        mochila_select = Mochilas.query.filter_by(user_id=current_user.user_id, id=mochila_id).first()
-
-        contenido_mochila = Mochila.query.filter_by(mochila_id=mochila_select.id).all()
-
-        weather = clima()
-        return render_template('myprofile.html', 
-                           user=current_user, 
-                           mochilas_list=mochilas_list,
-                           mochila_select=mochila_select,
-                           contenido_mochila=contenido_mochila, 
-                           weather=weather
-                           )
-
-    elif request.method == 'GET':
-        mochila = Mochila.query.filter_by(mochila_id=mochila_id)
-        mochilas = Mochilas.query.filter_by(user_id=current_user.user_id).all()
-        return render_template('myprofile.html', user=current_user, mochila_select=mochila_select, mochilas=mochilas,  weather=weather)
 
 
 

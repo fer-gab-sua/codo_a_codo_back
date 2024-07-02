@@ -1,0 +1,21 @@
+{% for mochila in mochilas_list %}
+<div class="container-lista-mochilas-creadas" id="mochila-{{ mochila.id }}">
+    <div class="titulo acciones">
+        <h4>{{ mochila.nombre }} - <span>{{ mochila.descripcion }}</span></h4>
+    </div> 
+    <div class="acciones">
+
+        <form class="delete-mochila-form" data-mochila-id="{{ mochila.id }}" data-url="{{ url_for('my_profile.delete_mochila', mochila_id=mochila.id) }}">
+            <button type="submit" class="borrar"><img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/trash_icon_128726.svg') }}" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
+        </form>
+
+        <form class="select-mochila-form" data-mochila-id="{{ mochila.id }}" data-url="{{ url_for('my_profile.select_mochila', mochila_id=mochila.id) }}">
+            <button type="submit" class="editar">
+                <img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/edit_icon_128873.svg') }}" class="icon-btn" style="height: 30px" alt="edit-icon">
+            </button>
+        </form>
+
+        
+    </div>
+</div>
+{% endfor %}

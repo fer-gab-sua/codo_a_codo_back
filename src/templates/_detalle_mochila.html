@@ -1,0 +1,34 @@
+{% if mochila %}
+<div>
+    <h3 class="titulo">{{ mochila.nombre }} - {{ mochila.descripcion }}</h3>
+    <h6 class="color-texto-special">¡Crea un item para cada elemento que coloques! Puedes editarlos o eliminarlos después.</h6>
+</div>
+<form id="registroFormItem" method="POST" data-mochila-id="{{ mochila.id }}" data-url="{{ url_for('my_profile.new_item', mochila_id=mochila.id) }}" class="col-md-12 formulariomochi">
+    <div class="form-group">
+        <input type="number" class="form-control custom-bg filled-text-color" id="cantidad" name="cantidad" placeholder="Cantidad">
+        <input type="text" class="form-control custom-bg filled-text-color" id="contenido" name="contenido" placeholder="Contenido">
+        <button type="submit" class="btn-1">Agregar</button>
+    </div>
+</form>
+<div class="container-lista-mochilas" id="items-container">
+    {% for item in contenido_mochila %}
+    <div class="container-lista-mochilas-creadas" id="item-{{ item.id }}">
+        <div class="titulo acciones">
+            <h4>{{ item.cantidad }} - <span>{{ item.contenido }}</span></h4>
+        </div>
+        <div class="acciones">
+
+            <!--AHORA ESTOY ACA-->
+
+            <form class="delete-item-form" data-item-id="{{ item.id }}" style="display: inline;" data-url="{{ url_for('my_profile.delete_item', item_id=item.id) }}">
+                <button type="submit" class="borrar"><img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/trash_icon_128726.svg') }}" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
+            </form>
+
+
+
+            
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
