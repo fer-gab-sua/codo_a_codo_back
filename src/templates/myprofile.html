@@ -24,31 +24,54 @@
     <header>
             {% include '_menu.html' %}
     </header> 
+
     <section id="HERO-MOCHILAS">
         <div class="banner" id="TOP-MiPerfil">
         </div>
     </section>
 
     <section id="MI-PERFIL" class="Fondo">
-<div>
-    <a class="a-especial volver" href="login.html"> Volver Atrás</a> 
-
-</div>
             <section class="Mi-Perfil">
                 <div class="d1">
                     <h2 class="titulo">Mi Perfil</h2>
                 </div>
+                <!-- Perfil current_user-->
+                
                 <div class="d2">
                     <div class="d2i">
                         <img class="d2i-img" src="{{ url_for('static', filename='archivos/' + current_user.use_profile_img) }}" alt="Foto de Usuario">
                     </div>
+                    
                     <div class="d2d">
                         <h3 class="color-texto-special">{{current_user.use_str_first_name}} {{current_user.use_str_last_name}}</h3>
                         <p>Telefono: {{current_user.use_str_phone}} </p>
                         <p>E-Mail: {{current_user.use_str_email}}</p>
                     </div>
+                    <!-- clima  weather -->
+                    <div class="clima">
+                        <h4>Clima Bolson</h4>
+                        <div class="contenedorclima">
+                            <div class="cont_izq_clima">
+                                <p>Temp.: <br>
+                                    <span>{{ weather.temperature }}°C</span></p>
+            
+                                <p>Sensación térmica: <br>
+                                    <span>{{ weather.sensacion_termica }}°C</span></p>
+                            </div>    
+                            <div class="cont_der_clima">
+                                <p>Descripción: <br>
+                                    <span>{{ weather.description }}</span></p>
+                                <img src="http://openweathermap.org/img/wn/{{ weather.icon }}.png" alt="Icono del clima">
+                            </div>
+                        
+                        </div>    
+                    </div>
                 </div>
             </section>
+            
+
+
+
             <section class="Arma-tu-Mochila">
                 <h3 class="color-special">¡Arma tus Mochilas!</h3>
                 <h4 class="color-texto-special">Registra por viaje una mochila y arma tu lista para chequear antes de salir y no olvidar nada!</h4>
@@ -56,161 +79,143 @@
                 <h4 class="color-texto-special">¡Comencemos! </h4>
             </section>
 
-<section id="lista-mochilas" class="Mis-Mochilas">
+
+            
+
+<section id="lista-mochilas" class="lista-mochilas"">
     <h2 class="titulo">Mis Mochilas</h2>
     <div>
         <div class="Nuevo-item-mochila">
-            <div class="col-md-6">
+            
+            <!-- nueva mochila formulario-->
+            <form id="registroForm" method="POST" action="{{ url_for('my_profile.new_mochila') }}" class="col-md-12 formulariomochi">
+                <!-- este es el formulario de alta nueva-->
                 <div class="form-group">
-                    <input type="text" class="form-control custom-bg filled-text-color" id="nuevoItem" placeholder="Nombre Nueva Mochila">
+                    <input type="text" class="form-control custom-bg filled-text-color" id="nombre_mochila" name="nombre_mochila" placeholder="Nombre Nueva Mochila">
+
+                    <input type="text" class="form-control custom-bg filled-text-color" id="descripcion_mochila"  name="descripcion_mochila"placeholder="Descripcion Mochila">                
+
+                    <button type="submit" class="btn-1">Crear</button> 
                 </div>
-            </div>
-            <div>
-                <button class="btn-1">Crear</button> 
-            </div>
+            </form>
         </div>
-        
-       
+
     </div>
-   
-
-    
-        <div class="container-lista-mochilas">
-
+        
+    <!-- listado de mochilas  -->
+    <div class="container-lista-mochilas">
+            {% for mochila in mochilas_list  %}
             <div class="container-lista-mochilas-creadas">
                 <div id="mochila-1" class="titulo acciones">
-                        <h4>Mochila-1</h4>
+                        <h4>{{mochila.nombre}} - <span>{{mochila.descripcion}}</span></h4>
                 </div> 
                 <div class="acciones">
-                    <button class="borrar"><img src="img/Refugios-MOCHILAS/trash_icon_128726.svg" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
-                    <button class="editar"><img src="img/Refugios-MOCHILAS/edit_icon_128873.svg"  class="icon-btn" style="height: 30px" alt="edit-icon"></button>
+                    <form action="{{ url_for('my_profile.delete_mochila', mochila_id=mochila.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="borrar"><img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/trash_icon_128726.svg') }}" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
+                    </form>
+
+                    <form action="{{ url_for('my_profile.update_mochila', mochila_id=mochila.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="editar">
+                            <img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/edit_icon_128873.svg')}}"  class="icon-btn" style="height: 30px" alt="edit-icon">
+                        </button>
+                    </form>
+
                 </div>
             </div>
+            {% endfor %}
 
-            <div class="container-lista-mochilas-creadas">
-                <div id="mochila-2" class="titulo acciones">
-                        <h4>Mochila-2</h4>
-                </div> 
-                <div class="acciones">
-                    <button class="borrar"><img src="img/Refugios-MOCHILAS/trash_icon_128726.svg" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
-                    <button class="editar"><img src="img/Refugios-MOCHILAS/edit_icon_128873.svg"  class="icon-btn" style="height: 30px" alt="edit-icon"></button>
-                </div>
-            </div>
-
-
-            <div class="container-lista-mochilas-creadas">
-                <div id="mochila-3" class="titulo acciones">
-                        <h4>Mochila-3</h4>
-                </div> 
-                <div class="acciones">
-                    <button class="borrar"><img src="img/Refugios-MOCHILAS/trash_icon_128726.svg" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
-                    <button class="editar"><img src="img/Refugios-MOCHILAS/edit_icon_128873.svg"  class="icon-btn" style="height: 30px" alt="edit-icon"></button>
-                </div>
-            </div>
+       
 
         </div>
 </section>
+
+
+
 <section id="Mochila-Seleccionada" class="titulo">
+    <!-- descripcion mochila seleccionada -->
+    {% if mochila_select %}
     <div>
-        <h3 class="titulo">Mochila-1</h3>
+        <h3 class="titulo">{{ mochila_select.nombre }} - {{ mochila_select.descripcion }}
+
+        </h3>
         <h6 class="color-texto-special">¡Crea un item para cada elemento que coloques! Puedes editarlos o eliminarlos después.</h6>
     </div>
 
-    <div >
-        <div id="crear-items" class="container-crear-items-en-mochila">
+ <!-- formulario nuevo item  -->
+    <form id="registroFormItem" method="POST" action="{{ url_for('my_profile.new_item',  mochila_id=mochila_select.id) }}" class="col-md-12 formulariomochi">
+        <!-- este es el formulario de alta nueva-->
+        <div class="form-group">
+            <input type="number" class="form-control custom-bg filled-text-color" id="cantidad"  name="cantidad"placeholder="cantidad">                
+            <input type="text" class="form-control custom-bg filled-text-color" id="contenido" name="contenido" placeholder="contenido">
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control custom-bg filled-text-color" id="nuevoItem" placeholder="Nuevo Item">
+
+            <button type="submit" class="btn-1">Agregar</button> 
+        </div>
+    </form>
+
+    <!--Muestro los item-->
+
+<div class="container-lista-mochilas">
+
+            {% for item in contenido_mochila %}
+            <div class="container-lista-mochilas-creadas">
+                <div id="mochila-1" class="titulo acciones">
+                        <h4>{{item.cantidad}} - <span>{{item.contenido}}</span></h4>
+                </div> 
+                <div class="acciones">
+                    <form action="{{ url_for('my_profile.delete_item', item_id=item.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="borrar"><img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/trash_icon_128726.svg') }}" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
+                    </form>
+
+                    <form action="" method="POST" style="display: inline;">
+                        <button type="submit" class="editar">
+                            <img src="{{ url_for('static', filename='img/Refugios-MOCHILAS/edit_icon_128873.svg')}}"  class="icon-btn" style="height: 30px" alt="edit-icon">
+                        </button>
+                    </form>
+
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control custom-bg filled-text-color" id="descripcion" placeholder="Descripción">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control custom-bg filled-text-color" id="cantidad" placeholder="Cantidad">
-                </div>
-            </div>
-            <div>
-                <button class="btn-1">Crear</button> 
-            </div>
-            
+            {% endfor %}
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    {% else %}
+    {% endif %}
     
-        </div>
-    </div>
-
-    <div id="item-creado" class="container-crear-items-en-mochila">
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="nuevoItem" placeholder="Nuevo Item">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="descripcion" placeholder="Descripción">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="cantidad" placeholder="Cantidad">
-            </div>
-        </div>
-        <div class="acciones">
-            <button class="borrar"><img src="img/Refugios-MOCHILAS/trash_icon_128726.svg" class="icon-btn" style="height: 30px" alt="trash-icon"></button>
-            <button class="editar"><img src="img/Refugios-MOCHILAS/edit_icon_128873.svg"  class="icon-btn" style="height: 30px" alt="edit-icon"></button>
-        </div>
-
-    </div>
-    <div id="item-creado" class="container-crear-items-en-mochila">
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="nuevoItem" placeholder="Nuevo Item">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="descripcion" placeholder="Descripción">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control custom-bg filled-text-color" id="cantidad" placeholder="Cantidad">
-            </div>
-        </div>
-        <div class="acciones">
-            <button class="borrar"><img src="img/Refugios-MOCHILAS/trash_icon_128726.svg" class="icon-btn" style="height: 30px"></button>
-            <button class="editar"><img src="img/Refugios-MOCHILAS/edit_icon_128873.svg"  class="icon-btn" style="height: 30px"></button>
-        </div>
-
-    </div>
-    
-
-
-
-
-
-
 
 </section>
-                                    
-        
-        
 
-   <!--
-           
-             -->
-        </section>
-  
-        <footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
         <div class="footer-info">
             <div class="footer-logo">
             <a href="#TOP-nosotros">
-            <img class="img-footer-logo" src="img/Logo-Ico/RefugiosDeMontania-Logo-black.png" alt="Refugios de Montaña Logo">
+            <img class="img-footer-logo" src="{{ url_for('static', filename='img/Logo-Ico/RefugiosDeMontania-Logo-black.png')}}" alt="Refugios de Montaña Logo">
             </a>
             </div>
             <div class="footer-links">
@@ -248,7 +253,7 @@
             <p>© Copyright 2024 <b>Grupo 12</b> Codo a Codo</p>
         </div>
     </footer>
-    <script src="mochilas.js"></script>
+    <script src="{{ url_for('static', filename='js/mochilas.js') }}"></script>
 
     
 </body>

@@ -56,7 +56,7 @@ class Mochilas(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     nombre = db.Column(db.String(50), nullable=False)
     descripcion = db.Column(db.String(200), nullable=True)
-    mochila_details = db.relationship('Mochila', backref='mochilas', lazy=True)
+    mochila_details = db.relationship('Mochila', backref='mochilas', lazy=True, cascade='all, delete-orphan')
 
 class Mochila(db.Model):
     __tablename__ = 'mochila'

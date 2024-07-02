@@ -75,19 +75,12 @@ header {
     display: none;
 }
 
-.container-lista-mochilas{
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-}
-
 
 @media (min-width: 480px) {
     .container-lista-mochilas {
 flex-wrap: wrap;  
 
-  }
+ }
 }
 
 @media(max-width:1023px) {
@@ -144,7 +137,7 @@ flex-wrap: wrap;
 
 .banner{
     width:100%;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -181,14 +174,6 @@ flex-wrap: wrap;
     align-items: center;
 
 }
-.header-txt .contorno{
-    color: transparent;  /*Hacer el texto transparente para que solo se vea el contorno */
-    -webkit-text-stroke: 2px rgb(255, 255, 255);  /*Añadir un contorno de 2px en negro */
-    font-size: 6vw;
-    text-transform: uppercase;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-}
 
 .header-txt p{
     margin-top: 150px;
@@ -207,25 +192,14 @@ flex-wrap: wrap;
     font-family: "Inter", sans-serif;
     font-weight: bold;
     text-decoration: none;
-    padding: 16px 70px;
+    padding: 0px 70px;
+    margin-top: 10px;
     border-radius: 10px;
+    height: 50px;
 }
 
 .btn-1:hover {
     background-color: #EE6300;
-}
-.btn-2 {
-    text-transform: uppercase;
-    color: #FEDCC4;
-    background-color: #FF7C20;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    font-family: "Inter", sans-serif;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    padding: 16px 70px;
-    border-radius: 10px;   
-
 }
 
 a {
@@ -313,20 +287,47 @@ h2, h3, h4 {
             }
     }
 .Fondo {
-    justify-content: center;
     padding-top: 40px;
     padding-bottom: 90px;
-    padding-right: 20%;
-    padding-left: 20%;
-    background-color: #273749;
+padding-left: 20%;
+padding-right: 20%;
+background-color: #273749;
 
 }
+.aaa {
+display: flex;
+flex-direction: row;
+gap: 10px;
 
-.Mi-Perfil .Arma-tu-mochila {
+}
+.fg {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.fd {
+    display: flex;
+    flex-direction: column;
+}
+
+.ListaDeItemsCreados {
+    padding-top: 20px;
+}
+.Mi-Perfil {
     padding-bottom: 5%;
         display: flex;
         flex-direction: column;
 }
+
+
+.Arma-tu-mochila {
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    background-color: #EE6300;
+}
+
 
 .d2 {
     display: flex;
@@ -367,51 +368,6 @@ h2, h3, h4 {
 
 }
 
-
-.Mis-Mochilas {
-display: flex;
-flex-direction: column;
-padding-top: 50px;
-flex-basis: auto;
-
-}
-
-
-.container-lista-mochilas-creadas {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 700px;
-    height: 60px;
-    justify-content: space-between;
-
-
-}
-
-
-
-.container-crear-items-en-mochila {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 400px;
-    align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-.Nuevo-item-mochila {
-    display: flex;
-    flex-direction: row;
-align-items: center;
-gap: 10px;
-width: 100%;
-
-}
-.col-md-6 {
-width: 100%;
-
-}
 .acciones {
     display: flex;
     padding: 10px 0px;
@@ -459,7 +415,7 @@ border-color: #FF7C20;
     text-decoration: none;
     }
 
- .volver {
+.volver {
 text-decoration: underline; }   
 
 .footer-info {
@@ -528,3 +484,97 @@ text-decoration: underline; }
 }
 
 
+
+
+.form-group  {
+    width: 100%;
+    display: inline-flex;
+}
+
+.container-lista-mochilas-creadas {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ee63003b ;
+}
+
+
+.form-group  input{
+    margin: 10px;
+}
+
+
+
+/*componente clima*/
+
+.clima {
+    background-color:#273749;/* #FF7C20;*/
+    padding: 10px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: aliceblue;
+    margin-left: 400px;
+}
+.clima h3 {
+    color: #FF7C20;
+    margin: 3px;
+
+}
+.clima p {
+    font-size: 0.7em;
+    color: #273749;
+    margin: 02px 0px;
+    
+}
+.clima img {
+    margin-top: 15px;
+    width: 70px;
+    border: 1px double #27374957;
+    border-radius: 10px;
+}
+
+.contenedorclima {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    border: #33333372 solid 1px ; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background-color: #FF7C20;
+    padding: 10px;
+}
+
+.cont_izq_clima {
+    display: block;
+    width: 39%;
+    margin: 1PX;
+
+
+}
+
+.cont_izq_clima span{
+    font-size: 2em;
+    font-weight: bold;
+    
+}
+.cont_der_clima {
+    display: block;
+    width: 61%;
+    border-left: #273749 solid 1px;
+
+    
+}
+
+.cont_der_clima span {
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.cont_der_clima img{
+    margin-top: 0px;
+    
+}
