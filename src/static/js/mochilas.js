@@ -117,7 +117,7 @@ $(document).ready(function() {
 
         const itemId = $(this).data('item-id');
         const url = $(this).data('url');
-        alert("hola")
+
 
         $.ajax({
             type: 'POST',

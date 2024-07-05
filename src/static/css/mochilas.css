@@ -581,3 +581,8 @@ text-decoration: underline; }
     margin-top: 0px;
     
 }
+
+
+.d2i-img {
+    border-radius: 100px;
+}
