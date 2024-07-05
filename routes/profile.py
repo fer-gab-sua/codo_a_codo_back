@@ -3,9 +3,18 @@ from flask_login import current_user, login_required
 from models import User , Mochilas, Mochila, db 
 import requests
 
+
+
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
+from reportlab.lib.units import inch
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image, Spacer, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+
+
+
 my_profile_routes = Blueprint('my_profile', __name__)
-
-
 
 def clima():
         api_key = '1d93bc91eeb6a258d8c2ee0bf8475bb1'
@@ -34,9 +43,9 @@ def myprofile():
     mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
     weather = clima()
     return render_template('myprofile.html', 
-                           user=current_user, 
-                           mochilas_list=mochilas_list, 
-                           weather=weather)
+                            user=current_user, 
+                            mochilas_list=mochilas_list, 
+                            weather=weather)
 
 @my_profile_routes.route('/myprofile/new_mochila', methods=['GET', 'POST'])
 @login_required
@@ -101,9 +110,7 @@ def new_item(mochila_id):
 
         mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
         mochila_select = Mochilas.query.filter_by(user_id=current_user.user_id, id=mochila_id).first()
-
         contenido_mochila = Mochila.query.filter_by(mochila_id=mochila_select.id).all()
-
 
         mochila_html = render_template('_detalle_mochila.html',  mochilas_list= mochilas_list, mochila=mochila_select, contenido_mochila=contenido_mochila)
         return jsonify({'status': 'success', 'html': mochila_html})
@@ -119,19 +126,12 @@ def delete_item(item_id):
         abort(404)
     mochila_id = item.mochila_id
 
-    print("--------------------------------------------------------------------------------------")
-    print( mochila_id )
     mochilas_list = Mochilas.query.filter_by(user_id=current_user.user_id).all()
     mochila_select = Mochilas.query.filter_by(id=mochila_id).first()
-    
-    weather = clima()
-
 
     db.session.delete(item)
     db.session.commit()
-    
-    
-    
+
     contenido_mochila= Mochila.query.filter_by(mochila_id=mochila_id).all()
     mochila_html = render_template('_detalle_mochila.html',  mochilas_list= mochilas_list, mochila=mochila_select, contenido_mochila=contenido_mochila)
     return jsonify({'status': 'success', 'html': mochila_html})

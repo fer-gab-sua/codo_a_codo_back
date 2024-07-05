@@ -15,6 +15,8 @@
             success: function(response) {
                 if (response.status === 'success') {
                     $('#mochilas-container').empty().append(response.html);
+                    $('#nombre_mochila').val(''); // Limpiar el campo de cantidad
+                    $('#descripcion_mochila').val(''); // Limpiar el campo de contenido
                 } else {
                     alert('Error al crear la mochila: ' + response.message);
                 }
@@ -38,6 +40,8 @@ $(document).on('submit', '.delete-mochila-form', function(event) {
         success: function(response) {
             if (response.status === 'success') {
                 $('#mochilas-container').empty().append(response.html);
+                $('#Mochila-Seleccionada').empty()
+
             }
         },
         error: function() {
