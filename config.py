@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config():
     SECRET_KEY = 'este_es_el_grupo_12_python'
@@ -12,8 +15,7 @@ class Config():
         'pool_size': 20,
         'pool_timeout': 30,
     }
-    SECRET_KEY = 'este_es_el_grupo_12_python' 
-    JWT_SECRET_KEY = 'este_es_el_grupo_12_python'
+
 
 class Rutes(Config):
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
